@@ -514,6 +514,76 @@
     display: none;
   }
 
+
+
+  /* ── BAIRRO: SELECT + OUTRO BAIRRO ── */
+  .bairro-extra {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 9px;
+    animation: fadeSlideIn 0.25s ease;
+  }
+
+  .bairro-extra.visivel {
+    display: flex;
+  }
+
+  .frete-status {
+    font-size: 11px;
+    color: var(--white-55);
+    line-height: 1.45;
+    min-height: 16px;
+    margin-top: 6px;
+  }
+
+  /* ── OTIMIZAÇÃO DESKTOP / MOBILE ── */
+  .grid, .cart {
+    width: min(100% - 32px, 1120px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cart {
+    max-width: 720px;
+  }
+
+  @media (min-width: 640px) {
+    header { padding: 54px 24px 38px; }
+    .brand-name { font-size: 38px; }
+    .section-title { font-size: 26px; }
+    .grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .card { padding: 16px 14px 18px; }
+    .card-name { font-size: 14px; }
+    .cart { padding: 26px 24px 28px; }
+    .form-section { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .entrega-section, .campos-entrega, .form-group:last-child { grid-column: 1 / -1; }
+    .campos-entrega { display: grid; grid-template-columns: 1.4fr 1fr; }
+    .campos-entrega.oculto { display: none; }
+  }
+
+  @media (min-width: 980px) {
+    .grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .cart { max-width: 760px; }
+    .btn { width: 36px; height: 36px; }
+  }
+
+  @media (max-width: 380px) {
+    .grid { width: min(100% - 20px, 1120px); gap: 10px; }
+    .cart { width: min(100% - 20px, 720px); padding: 18px 14px 22px; }
+    .card { padding: 12px 9px 14px; }
+    .pagamento-grid { grid-template-columns: 1fr; }
+    .entrega-toggle { grid-template-columns: 1fr; }
+  }
+
   /* ── WHATSAPP BTN ── */
   .whatsapp {
     margin-top: 22px; width: 100%; padding: 16px;
@@ -675,7 +745,15 @@
           <option value="3">Gleba E</option>
           <option value="5">Gleba H</option>
           <option value="9.50">Parque Nascente do Rio Capivara</option>
+          <option value="outro">Meu bairro não está na lista</option>
         </select>
+
+        <div class="bairro-extra" id="bairro-extra">
+          <label class="form-label" for="bairro-outro">Digite seu bairro</label>
+          <input id="bairro-outro" type="text" placeholder="Ex: Nova Camaçari, Gleba X...">
+          <p class="frete-status" id="frete-status">O frete será confirmado pelo WhatsApp.</p>
+        </div>
+
         <p class="hint-text">Entrega em até 20 minutos após confirmação</p>
       </div>
     </div>
@@ -804,13 +882,38 @@ function selecionarPag(tipo, el) {
 
 function getBairroData() {
   if (isRetirada) return null;
+
   const sel = document.getElementById("bairro");
   const val = sel.value;
+
   if (!val) return null;
+
+  if (val === "outro") {
+    const bairroOutro = document.getElementById("bairro-outro").value.trim();
+    if (!bairroOutro) return null;
+    return { valor: 0, label: "A confirmar", nome: bairroOutro, conhecido: false };
+  }
+
   const valor = parseFloat(val);
   const nome  = sel.options[sel.selectedIndex].text;
-  const label = `R$ ${valor.toFixed(2).replace('.', ',')}`;
-  return { valor, label, nome };
+  const label = valor.toFixed(2).replace('.', ',');
+  return { valor, label, nome, conhecido: true };
+}
+
+function toggleOutroBairro() {
+  const sel = document.getElementById("bairro");
+  const extra = document.getElementById("bairro-extra");
+  const outroInput = document.getElementById("bairro-outro");
+
+  if (sel.value === "outro") {
+    extra.classList.add("visivel");
+    setTimeout(() => outroInput.focus(), 80);
+  } else {
+    extra.classList.remove("visivel");
+    outroInput.value = "";
+  }
+
+  atualizar();
 }
 
 function atualizar() {
@@ -839,7 +942,14 @@ function atualizar() {
   document.getElementById("subtotal-val").textContent = subtotal.toFixed(2).replace('.', ',');
 
   if (!isRetirada) {
-    document.getElementById("frete-val").textContent = bairro ? `R$ ${bairro.label}` : "Selecione o bairro";
+    document.getElementById("frete-val").textContent = bairro ? (bairro.conhecido ? `R$ ${bairro.label}` : "A confirmar") : "Selecione o bairro";
+
+    const freteStatus = document.getElementById("frete-status");
+    if (freteStatus) {
+      freteStatus.textContent = bairro && !bairro.conhecido
+        ? "O frete será confirmado pelo WhatsApp."
+        : "O frete será confirmado pelo WhatsApp.";
+    }
   }
 
   document.getElementById("total").textContent = total.toFixed(2).replace('.', ',');
@@ -849,7 +959,8 @@ function atualizar() {
   });
 }
 
-document.getElementById("bairro").addEventListener("change", atualizar);
+document.getElementById("bairro").addEventListener("change", toggleOutroBairro);
+document.getElementById("bairro-outro").addEventListener("input", atualizar);
 
 /* ── ENVIAR ── */
 function enviar() {
@@ -865,7 +976,7 @@ function enviar() {
     const endereco = document.getElementById("endereco").value.trim();
     const bairro   = getBairroData();
     if (!endereco) { alert("⚠️ Preencha o endereço de entrega."); return; }
-    if (!bairro)   { alert("⚠️ Selecione seu bairro para calcular o frete."); return; }
+    if (!bairro)   { alert("⚠️ Selecione seu bairro ou digite o nome dele."); return; }
   }
 
   if (Object.keys(carrinho).length === 0) {
@@ -896,7 +1007,9 @@ function enviar() {
     localInfo =
       `📍 *Endereço:* ${endereco}\n` +
       `📌 *Bairro:* ${bairro.nome}\n` +
-      `🚗 *Frete:* R$ ${bairro.label}\n`;
+      (bairro.conhecido
+        ? `🚗 *Frete:* R$ ${bairro.label}\n`
+        : `🚗 *Frete:* A confirmar pelo atendimento\n`);
   }
 
   const msg =
@@ -914,6 +1027,7 @@ function enviar() {
 }
 
 renderProdutos();
+atualizar();
 </script>
 </body>
 </html>
