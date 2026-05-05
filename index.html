@@ -584,6 +584,206 @@
     .entrega-toggle { grid-template-columns: 1fr; }
   }
 
+
+  /* ── MODAL DE DETALHE DO SABOR ── */
+  .modal-sabor {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: rgba(5, 0, 10, 0.78);
+    backdrop-filter: blur(10px);
+  }
+
+  .modal-sabor.visivel { display: flex; }
+
+  .modal-box {
+    width: min(100%, 900px);
+    max-height: min(92vh, 820px);
+    overflow-y: auto;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--white-12);
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(232,164,74,0.10) 0%, transparent 55%),
+      linear-gradient(180deg, rgba(30,5,53,0.98), rgba(11,1,21,0.98));
+    box-shadow: 0 24px 90px rgba(0,0,0,0.55);
+    position: relative;
+  }
+
+  .modal-fechar {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--white-12);
+    background: rgba(255,255,255,0.08);
+    color: var(--white);
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-conteudo {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 22px;
+  }
+
+  .modal-img-wrap {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: rgba(155,58,138,0.10);
+    border: 1px solid var(--white-12);
+  }
+
+  .modal-img-wrap img {
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .modal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .modal-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.6px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .modal-titulo {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--cream);
+    line-height: 1.1;
+  }
+
+  .modal-preco {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--gold-light);
+  }
+
+  .modal-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--white-80);
+  }
+
+  .modal-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 2px;
+  }
+
+  .modal-lista li {
+    font-size: 12px;
+    color: var(--white-55);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .modal-lista li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .modal-acoes {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .modal-qtd {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 8px 10px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--white-12);
+    background: var(--white-04);
+  }
+
+  .modal-add {
+    width: 100%;
+    min-height: 48px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--gold) 0%, #c87c28 100%);
+    color: #1b0710;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  .modal-add:hover { transform: translateY(-2px); opacity: 0.92; }
+
+  .detalhe-btn {
+    width: 100%;
+    margin: 8px 0 10px;
+    padding: 9px 10px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--gold-border);
+    background: var(--gold-glow);
+    color: var(--gold-light);
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .detalhe-btn:hover {
+    background: rgba(232,164,74,0.26);
+    transform: translateY(-1px);
+  }
+
+  @media (min-width: 760px) {
+    .modal-conteudo {
+      grid-template-columns: 0.95fr 1.05fr;
+      padding: 28px;
+      align-items: center;
+    }
+    .modal-titulo { font-size: 34px; }
+  }
+
+  @media (max-width: 420px) {
+    .modal-sabor { padding: 10px; align-items: flex-end; }
+    .modal-box { max-height: 94vh; border-radius: 24px 24px 0 0; }
+    .modal-conteudo { padding: 18px 14px 20px; }
+    .modal-acoes { grid-template-columns: 1fr; }
+    .modal-img-wrap img { max-height: 390px; }
+  }
+
   /* ── WHATSAPP BTN ── */
   .whatsapp {
     margin-top: 22px; width: 100%; padding: 16px;
@@ -785,19 +985,89 @@
 
 </div>
 
+
+<!-- Modal de detalhes do sabor -->
+<div class="modal-sabor" id="modal-sabor" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+    <button class="modal-fechar" type="button" onclick="fecharDetalhe()" aria-label="Fechar detalhe">×</button>
+
+    <div class="modal-conteudo">
+      <div class="modal-img-wrap">
+        <img id="modal-img" src="" alt="">
+      </div>
+
+      <div class="modal-info">
+        <span class="modal-eyebrow">Detalhes do sabor</span>
+        <h3 class="modal-titulo" id="modal-titulo"></h3>
+        <div class="modal-preco" id="modal-preco"></div>
+        <p class="modal-desc" id="modal-desc"></p>
+
+        <ul class="modal-lista" id="modal-acompanha"></ul>
+
+        <div class="modal-acoes">
+          <div class="modal-qtd">
+            <button class="btn" type="button" onclick="alterarQtdModal(-1)">−</button>
+            <span class="qtd" id="modal-qtd">1</span>
+            <button class="btn" type="button" onclick="alterarQtdModal(1)">+</button>
+          </div>
+          <button class="modal-add" type="button" onclick="adicionarModalCarrinho()">Adicionar ao carrinho</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>© 2026 Açaí do Boca · Camaçari, BA · Feito com 💜 e muito açaí</footer>
 
 <script>
 const produtos = [
-  { name: "Tradicional",       preco: 12, img: "tradicional.png" },
-  { name: "Ninho",             preco: 12, img: "ninho.png" },
-  { name: "Ovomaltine",        preco: 12, img: "ovomaltine.png" },
-  { name: "Maracujá",          preco: 12, img: "maracujá.png" },
-  { name: "Paçoca",            preco: 13, img: "paçoca.png" },
-  { name: "Nutella c/ Ninho",  preco: 15, img: "ninho-nutella.png" },
+  {
+    name: "Tradicional",
+    preco: 12,
+    img: "tradicional.png",
+    desc: "A opção clássica para quem gosta do açaí bem cremoso, com camadas equilibradas e sabor direto.",
+    acompanha: ["Leite condensado", "Açaí cremoso", "Leite em pó", "Mais uma camada de açaí"]
+  },
+  {
+    name: "Ninho",
+    preco: 12,
+    img: "ninho.png",
+    desc: "Sabor mais suave e cremoso, com presença marcante do creme de ninho entre as camadas de açaí.",
+    acompanha: ["Creme de ninho", "Açaí cremoso", "Creme de ninho", "Mais uma camada de açaí"]
+  },
+  {
+    name: "Ovomaltine",
+    preco: 12,
+    img: "ovomaltine.png",
+    desc: "Combinação cremosa com toque crocante, ideal para quem gosta de um sabor mais intenso.",
+    acompanha: ["Creme especial", "Açaí cremoso", "Ovomaltine", "Finalização cremosa"]
+  },
+  {
+    name: "Maracujá",
+    preco: 12,
+    img: "maracujá.png",
+    desc: "Mistura do açaí com o toque levemente azedinho do maracujá, criando um sabor mais refrescante.",
+    acompanha: ["Creme de maracujá", "Açaí cremoso", "Camada de creme", "Finalização com açaí"]
+  },
+  {
+    name: "Paçoca",
+    preco: 13,
+    img: "paçoca.png",
+    desc: "Sabor mais doce e brasileiro, com paçoca combinando com o creme e o açaí gelado.",
+    acompanha: ["Creme especial", "Açaí cremoso", "Paçoca", "Finalização cremosa"]
+  },
+  {
+    name: "Nutella c/ Ninho",
+    preco: 15,
+    img: "ninho-nutella.png",
+    desc: "A versão mais recheada, com creme de ninho e detalhe de Nutella na garrafa.",
+    acompanha: ["Creme de ninho", "Açaí cremoso", "Creme de ninho", "Açaí", "Detalhe de Nutella"]
+  },
 ];
 
 let carrinho = {};
+let produtoModalIndex = null;
+let qtdModal = 1;
 let pagamentoSelecionado = "";
 let isRetirada = false;
 
@@ -833,6 +1103,7 @@ function renderProdutos() {
       </div>
       <p class="card-name">${p.name}</p>
       <p class="card-price">R$ ${p.preco.toFixed(2).replace('.', ',')}</p>
+      <button class="detalhe-btn" type="button" onclick="abrirDetalhe(${i})">Ver detalhe</button>
       <div class="controls">
         <button class="btn" onclick="diminuir(${i})">−</button>
         <span class="qtd" id="qtd${i}">0</span>
@@ -842,6 +1113,62 @@ function renderProdutos() {
   });
   document.getElementById("produtos").innerHTML = html;
 }
+
+function abrirDetalhe(i) {
+  produtoModalIndex = i;
+  qtdModal = 1;
+
+  const p = produtos[i];
+  const modal = document.getElementById("modal-sabor");
+
+  document.getElementById("modal-img").src = p.img;
+  document.getElementById("modal-img").alt = p.name;
+  document.getElementById("modal-titulo").textContent = p.name;
+  document.getElementById("modal-preco").textContent = `R$ ${p.preco.toFixed(2).replace('.', ',')}`;
+  document.getElementById("modal-desc").textContent = p.desc;
+  document.getElementById("modal-qtd").textContent = qtdModal;
+
+  document.getElementById("modal-acompanha").innerHTML = p.acompanha
+    .map(item => `<li>${item}</li>`)
+    .join("");
+
+  modal.classList.add("visivel");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function fecharDetalhe() {
+  const modal = document.getElementById("modal-sabor");
+  modal.classList.remove("visivel");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  produtoModalIndex = null;
+}
+
+function alterarQtdModal(delta) {
+  qtdModal = Math.max(1, qtdModal + delta);
+  document.getElementById("modal-qtd").textContent = qtdModal;
+}
+
+function adicionarModalCarrinho() {
+  if (produtoModalIndex === null) return;
+
+  const nome = produtos[produtoModalIndex].name;
+  carrinho[nome] = (carrinho[nome] || 0) + qtdModal;
+
+  fecharDetalhe();
+  atualizar();
+
+  document.getElementById("produtos").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") fecharDetalhe();
+});
+
+document.getElementById("modal-sabor").addEventListener("click", (event) => {
+  if (event.target.id === "modal-sabor") fecharDetalhe();
+});
 
 function animar(id) {
   const el = document.getElementById(id);
