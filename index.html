@@ -16,14 +16,12 @@
     --berry-light:   #a02c98;
     --berry-glow:    rgba(123, 27, 126, 0.10);
     --berry-border:  rgba(123, 27, 126, 0.18);
-    --gold:          #f4b400;
-    --gold-light:    #ffcc35;
-    --gold-glow:     rgba(244, 180, 0, 0.14);
-    --gold-border:   rgba(244, 180, 0, 0.34);
-    --copa-green:    #009b3a;
-    --copa-blue:     #002776;
-    --ifood:         #ea1d2c;
-    --ifood-dark:    #b91520;
+    --gold:          #7b1b7e;
+    --gold-light:    #8f2a92;
+    --gold-glow:     rgba(123, 27, 126, 0.10);
+    --gold-border:   rgba(123, 27, 126, 0.22);
+    --ifood:         #7b1b7e;
+    --ifood-dark:    #5c1050;
     --cream:         #2d1235;
     --white:         #202124;
     --white-80:      rgba(32,33,36,0.82);
@@ -48,9 +46,9 @@
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-deep);
     background-image:
-      radial-gradient(circle at 8% 6%, rgba(0,155,58,0.12) 0 90px, transparent 95px),
-      radial-gradient(circle at 92% 4%, rgba(244,180,0,0.18) 0 110px, transparent 116px),
-      linear-gradient(180deg, #ffffff 0%, #f7f7f7 42%, #f4f4f5 100%);
+      radial-gradient(circle at 8% 6%, rgba(123,27,126,0.08) 0 90px, transparent 95px),
+      radial-gradient(circle at 92% 4%, rgba(123,27,126,0.06) 0 110px, transparent 116px),
+      linear-gradient(180deg, #ffffff 0%, #faf7fb 42%, #f5f2f7 100%);
     color: var(--white);
     min-height: 100vh;
     overflow-x: hidden;
@@ -61,8 +59,8 @@
     padding: 32px 20px 24px;
     border-bottom: 1px solid rgba(32,33,36,0.08);
     background:
-      linear-gradient(135deg, rgba(0,155,58,0.10), transparent 34%),
-      linear-gradient(225deg, rgba(244,180,0,0.18), transparent 34%),
+      linear-gradient(135deg, rgba(123,27,126,0.08), transparent 36%),
+      linear-gradient(225deg, rgba(123,27,126,0.05), transparent 36%),
       #ffffff;
     position: relative;
   }
@@ -72,7 +70,7 @@
     position: absolute;
     inset: 0 0 auto 0;
     height: 7px;
-    background: linear-gradient(90deg, var(--copa-green), var(--gold), var(--copa-blue), var(--ifood));
+    background: linear-gradient(90deg, #5c1050, #7b1b7e, #a02c98);
   }
 
   .logo-wrap {
@@ -100,7 +98,7 @@
     font-weight: 800;
     letter-spacing: -0.5px;
     line-height: 1;
-    background: linear-gradient(100deg, var(--berry) 10%, var(--ifood) 55%, var(--copa-green));
+    background: linear-gradient(100deg, #5c1050 10%, #8f2a92 70%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -179,13 +177,13 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: radial-gradient(ellipse at 50% 0%, rgba(232,164,74,0.08) 0%, transparent 65%);
+    background: radial-gradient(ellipse at 50% 0%, rgba(123,27,126,0.08) 0%, transparent 65%);
     opacity: 0;
     transition: opacity 0.3s;
     pointer-events: none;
   }
 
-  .card:hover { background: var(--card-hover); border-color: rgba(234,29,44,0.20); transform: translateY(-4px); box-shadow: 0 14px 34px rgba(20,20,20,0.10); }
+  .card:hover { background: var(--card-hover); border-color: rgba(123,27,126,0.20); transform: translateY(-4px); box-shadow: 0 14px 34px rgba(20,20,20,0.10); }
   .card:hover::after { opacity: 1; }
 
   .card-img {
@@ -607,8 +605,8 @@
 
 
 
-  /* ── PAINEL COPA BRASIL / IFOOD STYLE ── */
-  .copa-panel {
+  /* ── PAINEL PROFISSIONAL / ESTILO APP DELIVERY ── */
+  .hero-panel {
     width: min(100% - 32px, 1120px);
     margin: 18px auto 0;
     border-radius: 24px;
@@ -618,12 +616,12 @@
     overflow: hidden;
   }
 
-  .copa-strip {
+  .hero-strip {
     height: 8px;
-    background: linear-gradient(90deg, var(--copa-green), var(--gold), var(--copa-blue), var(--ifood));
+    background: linear-gradient(90deg, #5c1050, #7b1b7e, #a02c98);
   }
 
-  .copa-content {
+  .hero-content {
     padding: 18px 18px 20px;
     display: grid;
     grid-template-columns: 1fr;
@@ -631,14 +629,14 @@
     align-items: center;
   }
 
-  .copa-tag {
+  .hero-tag {
     display: inline-flex;
     align-items: center;
     gap: 7px;
     width: fit-content;
     padding: 6px 12px;
     border-radius: 999px;
-    background: rgba(234,29,44,0.08);
+    background: rgba(123,27,126,0.08);
     color: var(--ifood);
     font-size: 11px;
     font-weight: 800;
@@ -646,7 +644,7 @@
     text-transform: uppercase;
   }
 
-  .copa-title {
+  .hero-title {
     font-size: 22px;
     font-weight: 900;
     letter-spacing: -0.6px;
@@ -654,20 +652,20 @@
     line-height: 1.1;
   }
 
-  .copa-subtitle {
+  .hero-subtitle {
     color: var(--white-55);
     font-size: 13px;
     line-height: 1.5;
     max-width: 640px;
   }
 
-  .copa-stats {
+  .hero-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
   }
 
-  .copa-stat {
+  .hero-stat {
     border-radius: 16px;
     background: #f8f8f8;
     border: 1px solid rgba(32,33,36,0.06);
@@ -675,13 +673,13 @@
     text-align: center;
   }
 
-  .copa-stat strong {
+  .hero-stat strong {
     display: block;
     font-size: 16px;
     color: var(--berry);
   }
 
-  .copa-stat span {
+  .hero-stat span {
     display: block;
     font-size: 10px;
     color: var(--white-55);
@@ -733,13 +731,13 @@
   .frete-chip span:last-child  { color: var(--ifood); font-weight: 900; white-space: nowrap; }
 
   .cart-icon {
-    background: rgba(234,29,44,0.08) !important;
-    border-color: rgba(234,29,44,0.14) !important;
+    background: rgba(123,27,126,0.08) !important;
+    border-color: rgba(123,27,126,0.14) !important;
   }
 
   .pag-btn.selecionado, .entrega-btn.selecionado {
-    border-color: rgba(234,29,44,0.28) !important;
-    background: rgba(234,29,44,0.08) !important;
+    border-color: rgba(123,27,126,0.28) !important;
+    background: rgba(123,27,126,0.08) !important;
     color: var(--ifood) !important;
   }
 
@@ -749,8 +747,8 @@
   }
 
   @media (min-width: 760px) {
-    .copa-content { grid-template-columns: 1.3fr .7fr; padding: 22px; }
-    .copa-stats { align-self: stretch; }
+    .hero-content { grid-template-columns: 1.3fr .7fr; padding: 22px; }
+    .hero-stats { align-self: stretch; }
     .frete-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
@@ -776,7 +774,7 @@
     border-radius: var(--radius-xl);
     border: 1px solid var(--white-12);
     background:
-      radial-gradient(ellipse at 50% 0%, rgba(232,164,74,0.10) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 0%, rgba(123,27,126,0.10) 0%, transparent 55%),
       linear-gradient(180deg, #ffffff, #fbfbfb);
     box-shadow: 0 24px 90px rgba(0,0,0,0.55);
     position: relative;
@@ -791,8 +789,8 @@
     height: 38px;
     border-radius: 50%;
     border: 1px solid var(--white-12);
-    background: rgba(255,255,255,0.08);
-    color: var(--white);
+    background: rgba(123,27,126,0.08);
+    color: var(--berry);
     font-size: 24px;
     cursor: pointer;
     line-height: 1;
@@ -905,8 +903,8 @@
     min-height: 48px;
     border: none;
     border-radius: var(--radius-md);
-    background: linear-gradient(135deg, var(--gold) 0%, #c87c28 100%);
-    color: #1b0710;
+    background: linear-gradient(135deg, #6d1670 0%, #a02c98 100%);
+    color: #ffffff;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
     font-weight: 800;
@@ -932,7 +930,7 @@
   }
 
   .detalhe-btn:hover {
-    background: rgba(232,164,74,0.26);
+    background: rgba(123,27,126,0.16);
     transform: translateY(-1px);
   }
 
@@ -962,11 +960,11 @@
     background: linear-gradient(135deg, var(--ifood) 0%, var(--ifood-dark) 100%);
     color: #ffffff; cursor: pointer;
     transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 10px 28px rgba(234,29,44,0.24);
+    box-shadow: 0 10px 28px rgba(123,27,126,0.22);
     display: flex; align-items: center; justify-content: center; gap: 9px;
   }
 
-  .whatsapp:hover { opacity: 0.94; transform: translateY(-2px); box-shadow: 0 14px 42px rgba(234,29,44,0.30); }
+  .whatsapp:hover { opacity: 0.94; transform: translateY(-2px); box-shadow: 0 14px 42px rgba(123,27,126,0.28); }
   .whatsapp:active { transform: scale(0.98); }
 
   footer {
@@ -990,18 +988,18 @@
   <span class="badge-tamanho">Copo 300ml · Gelado &amp; Cremoso</span>
 </header>
 
-<section class="copa-panel" aria-label="Painel promocional Copa Brasil">
-  <div class="copa-strip"></div>
-  <div class="copa-content">
+<section class="hero-panel" aria-label="Painel principal do cardápio">
+  <div class="hero-strip"></div>
+  <div class="hero-content">
     <div>
-      <span class="copa-tag">🏆 Clima de Copa Brasil</span>
-      <h2 class="copa-title">Seu açaí gelado para torcer do jeito certo</h2>
-      <p class="copa-subtitle">Cardápio em formato de painel profissional, com pedido rápido, frete por bairro e finalização direta no WhatsApp.</p>
+      <span class="hero-tag">Pedido rápido</span>
+      <h2 class="hero-title">Monte seu pedido em poucos cliques</h2>
+      <p class="hero-subtitle">Escolha seus sabores, selecione a forma de entrega e finalize direto no WhatsApp.</p>
     </div>
-    <div class="copa-stats">
-      <div class="copa-stat"><strong>300ml</strong><span>garrafa</span></div>
-      <div class="copa-stat"><strong>20min</strong><span>média entrega</span></div>
-      <div class="copa-stat"><strong>BA</strong><span>Camaçari</span></div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>300ml</strong><span>garrafa</span></div>
+      <div class="hero-stat"><strong>Entrega</strong><span>por bairro</span></div>
+      <div class="hero-stat"><strong>Camaçari</strong><span>BA</span></div>
     </div>
   </div>
 </section>
@@ -1139,45 +1137,6 @@
         </div>
 
         <p class="hint-text">Entrega em até 20 minutos após confirmação</p>
-
-        <div class="frete-tabela-card">
-          <div class="frete-tabela-titulo">🛵 Tabela de entrega por bairro</div>
-          <div class="frete-grid">
-            <div class="frete-chip"><span>Centro</span><span>R$ 8,00</span></div>
-            <div class="frete-chip"><span>Alto da Cruz</span><span>R$ 10,00</span></div>
-            <div class="frete-chip"><span>Bela Vista</span><span>R$ 8,00</span></div>
-            <div class="frete-chip"><span>Burissatuba</span><span>R$ 6,00</span></div>
-            <div class="frete-chip"><span>Camaçari de Dentro</span><span>R$ 6,00</span></div>
-            <div class="frete-chip"><span>Cristo Redentor</span><span>R$ 8,00</span></div>
-            <div class="frete-chip"><span>Dois de Julho</span><span>R$ 8,00</span></div>
-            <div class="frete-chip"><span>Ficam</span><span>R$ 9,00</span></div>
-            <div class="frete-chip"><span>Gravatá</span><span>R$ 9,00</span></div>
-            <div class="frete-chip"><span>Inocoop</span><span>R$ 7,00</span></div>
-            <div class="frete-chip"><span>Jardim Brasília</span><span>R$ 7,00</span></div>
-            <div class="frete-chip"><span>Jardim Limoeiro</span><span>R$ 10,00</span></div>
-            <div class="frete-chip"><span>Lama Preta</span><span>R$ 8,00</span></div>
-            <div class="frete-chip"><span>Mangueiral</span><span>R$ 9,00</span></div>
-            <div class="frete-chip"><span>Nova Vitória</span><span>R$ 9,00</span></div>
-            <div class="frete-chip"><span>Parque Satélite</span><span>R$ 9,00</span></div>
-            <div class="frete-chip"><span>Parque Verde II</span><span>R$ 6,00</span></div>
-            <div class="frete-chip"><span>Parque Verde III</span><span>R$ 6,00</span></div>
-            <div class="frete-chip"><span>Piaçaveira</span><span>R$ 7,00</span></div>
-            <div class="frete-chip"><span>Ponto Certo</span><span>R$ 8,00</span></div>
-            <div class="frete-chip"><span>Bairro 46</span><span>R$ 7,00</span></div>
-            <div class="frete-chip"><span>Recanto das Árvores</span><span>R$ 6,00</span></div>
-            <div class="frete-chip"><span>PHOC 1, 2 e 3</span><span>R$ 6,00</span></div>
-            <div class="frete-chip"><span>Tancredo Neves</span><span>R$ 6,00</span></div>
-            <div class="frete-chip"><span>Triângulo</span><span>R$ 8,00</span></div>
-            <div class="frete-chip"><span>Verdes Horizontes</span><span>R$ 7,00</span></div>
-            <div class="frete-chip"><span>Sítio Verde</span><span>R$ 10,00</span></div>
-            <div class="frete-chip"><span>Gleba A</span><span>R$ 8,00</span></div>
-            <div class="frete-chip"><span>Gleba B</span><span>R$ 8,00</span></div>
-            <div class="frete-chip"><span>Gleba C</span><span>R$ 7,00</span></div>
-            <div class="frete-chip"><span>Gleba E</span><span>R$ 6,00</span></div>
-            <div class="frete-chip"><span>Gleba H</span><span>R$ 8,00</span></div>
-            <div class="frete-chip"><span>Parque Nascente do Rio Capivara</span><span>R$ 12,00</span></div>
-          </div>
-        </div>
       </div>
     </div>
 
