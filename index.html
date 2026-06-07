@@ -9,31 +9,37 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg-deep:       #0b0115;
-    --bg-dark:       #130222;
-    --bg-mid:        #1e0535;
-    --berry:         #9b3a8a;
-    --berry-light:   #c058a8;
-    --berry-glow:    rgba(155, 58, 138, 0.18);
-    --berry-border:  rgba(192, 88, 168, 0.30);
-    --gold:          #e8a44a;
-    --gold-light:    #f2c87a;
-    --gold-glow:     rgba(232, 164, 74, 0.18);
-    --gold-border:   rgba(232, 164, 74, 0.30);
-    --cream:         #f5eadc;
-    --white:         #ffffff;
-    --white-80:      rgba(255,255,255,0.80);
-    --white-55:      rgba(255,255,255,0.55);
-    --white-30:      rgba(255,255,255,0.30);
-    --white-12:      rgba(255,255,255,0.12);
-    --white-07:      rgba(255,255,255,0.07);
-    --white-04:      rgba(255,255,255,0.04);
-    --card-bg:       rgba(155,58,138,0.07);
-    --card-hover:    rgba(155,58,138,0.14);
-    --radius-sm:     8px;
-    --radius-md:     14px;
-    --radius-lg:     20px;
-    --radius-xl:     28px;
+    --bg-deep:       #f7f7f7;
+    --bg-dark:       #ffffff;
+    --bg-mid:        #f3f4f6;
+    --berry:         #7b1b7e;
+    --berry-light:   #a02c98;
+    --berry-glow:    rgba(123, 27, 126, 0.10);
+    --berry-border:  rgba(123, 27, 126, 0.18);
+    --gold:          #f4b400;
+    --gold-light:    #ffcc35;
+    --gold-glow:     rgba(244, 180, 0, 0.14);
+    --gold-border:   rgba(244, 180, 0, 0.34);
+    --copa-green:    #009b3a;
+    --copa-blue:     #002776;
+    --ifood:         #ea1d2c;
+    --ifood-dark:    #b91520;
+    --cream:         #2d1235;
+    --white:         #202124;
+    --white-80:      rgba(32,33,36,0.82);
+    --white-55:      rgba(32,33,36,0.62);
+    --white-30:      rgba(32,33,36,0.38);
+    --white-12:      rgba(32,33,36,0.12);
+    --white-07:      rgba(32,33,36,0.07);
+    --white-04:      #ffffff;
+    --card-bg:       #ffffff;
+    --card-hover:    #fff8fb;
+    --shadow-soft:   0 10px 35px rgba(20,20,20,0.08);
+    --shadow-card:   0 8px 24px rgba(20,20,20,0.07);
+    --radius-sm:     10px;
+    --radius-md:     16px;
+    --radius-lg:     22px;
+    --radius-xl:     30px;
   }
 
   html { scroll-behavior: smooth; }
@@ -42,9 +48,9 @@
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-deep);
     background-image:
-      radial-gradient(ellipse 80% 55% at 50% -5%, rgba(130,30,110,0.60) 0%, transparent 65%),
-      radial-gradient(ellipse 40% 30% at 10% 90%, rgba(232,164,74,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 40% at 90% 85%, rgba(100,20,90,0.18) 0%, transparent 60%);
+      radial-gradient(circle at 8% 6%, rgba(0,155,58,0.12) 0 90px, transparent 95px),
+      radial-gradient(circle at 92% 4%, rgba(244,180,0,0.18) 0 110px, transparent 116px),
+      linear-gradient(180deg, #ffffff 0%, #f7f7f7 42%, #f4f4f5 100%);
     color: var(--white);
     min-height: 100vh;
     overflow-x: hidden;
@@ -52,8 +58,21 @@
 
   header {
     text-align: center;
-    padding: 44px 20px 32px;
-    border-bottom: 1px solid var(--white-12);
+    padding: 32px 20px 24px;
+    border-bottom: 1px solid rgba(32,33,36,0.08);
+    background:
+      linear-gradient(135deg, rgba(0,155,58,0.10), transparent 34%),
+      linear-gradient(225deg, rgba(244,180,0,0.18), transparent 34%),
+      #ffffff;
+    position: relative;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 7px;
+    background: linear-gradient(90deg, var(--copa-green), var(--gold), var(--copa-blue), var(--ifood));
   }
 
   .logo-wrap {
@@ -66,7 +85,7 @@
     margin-bottom: 14px;
     overflow: hidden;
     border: 2px solid var(--berry-border);
-    box-shadow: 0 0 50px rgba(155,58,138,0.45), 0 0 100px rgba(155,58,138,0.15);
+    box-shadow: 0 12px 34px rgba(123,27,126,0.18);
   }
 
   .logo-wrap img {
@@ -81,7 +100,7 @@
     font-weight: 800;
     letter-spacing: -0.5px;
     line-height: 1;
-    background: linear-gradient(100deg, var(--cream) 30%, var(--gold-light));
+    background: linear-gradient(100deg, var(--berry) 10%, var(--ifood) 55%, var(--copa-green));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -145,8 +164,9 @@
 
   .card {
     background: var(--card-bg);
-    border: 1px solid var(--white-12);
+    border: 1px solid rgba(32,33,36,0.08);
     border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
     padding: 14px 12px 16px;
     text-align: center;
     transition: background 0.25s, border-color 0.25s, transform 0.25s;
@@ -165,7 +185,7 @@
     pointer-events: none;
   }
 
-  .card:hover { background: var(--card-hover); border-color: var(--berry-border); transform: translateY(-3px); }
+  .card:hover { background: var(--card-hover); border-color: rgba(234,29,44,0.20); transform: translateY(-4px); box-shadow: 0 14px 34px rgba(20,20,20,0.10); }
   .card:hover::after { opacity: 1; }
 
   .card-img {
@@ -173,7 +193,7 @@
     aspect-ratio: 1086 / 1448;
     border-radius: 12px;
     overflow: hidden;
-    background: rgba(155,58,138,0.10);
+    background: #fafafa;
     margin-bottom: 10px;
     display: flex;
     align-items: center;
@@ -233,8 +253,9 @@
   .cart {
     margin: 0 16px 32px;
     background: var(--card-bg);
-    border: 1px solid var(--white-12);
+    border: 1px solid rgba(32,33,36,0.08);
     border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft);
     padding: 22px 18px 24px;
   }
 
@@ -300,8 +321,8 @@
     font-family: 'Poppins', sans-serif;
     width: 100%; padding: 11px 14px;
     border-radius: var(--radius-sm);
-    border: 1px solid var(--white-12);
-    background: var(--white-04);
+    border: 1px solid rgba(32,33,36,0.10);
+    background: #ffffff;
     color: var(--white);
     font-size: 14px; font-weight: 400;
     outline: none;
@@ -316,7 +337,7 @@
     background: rgba(155,58,138,0.08);
   }
 
-  select option { background: #1e0535; color: var(--white); }
+  select option { background: #ffffff; color: var(--white); }
 
   .hint-text {
     font-size: 11px; color: var(--white-55); font-weight: 300;
@@ -338,8 +359,8 @@
   .pag-btn {
     padding: 10px 4px;
     border-radius: var(--radius-sm);
-    border: 1px solid var(--white-12);
-    background: var(--white-04);
+    border: 1px solid rgba(32,33,36,0.10);
+    background: #ffffff;
     color: var(--white-55);
     font-family: 'Poppins', sans-serif;
     font-size: 12px; font-weight: 600;
@@ -386,8 +407,8 @@
   .entrega-btn {
     padding: 11px 8px;
     border-radius: var(--radius-sm);
-    border: 1px solid var(--white-12);
-    background: var(--white-04);
+    border: 1px solid rgba(32,33,36,0.10);
+    background: #ffffff;
     color: var(--white-55);
     font-family: 'Poppins', sans-serif;
     font-size: 12px; font-weight: 600;
@@ -585,6 +606,154 @@
   }
 
 
+
+  /* ── PAINEL COPA BRASIL / IFOOD STYLE ── */
+  .copa-panel {
+    width: min(100% - 32px, 1120px);
+    margin: 18px auto 0;
+    border-radius: 24px;
+    border: 1px solid rgba(32,33,36,0.08);
+    background: #ffffff;
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+  }
+
+  .copa-strip {
+    height: 8px;
+    background: linear-gradient(90deg, var(--copa-green), var(--gold), var(--copa-blue), var(--ifood));
+  }
+
+  .copa-content {
+    padding: 18px 18px 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .copa-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    width: fit-content;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(234,29,44,0.08);
+    color: var(--ifood);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+
+  .copa-title {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.6px;
+    color: #171717;
+    line-height: 1.1;
+  }
+
+  .copa-subtitle {
+    color: var(--white-55);
+    font-size: 13px;
+    line-height: 1.5;
+    max-width: 640px;
+  }
+
+  .copa-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .copa-stat {
+    border-radius: 16px;
+    background: #f8f8f8;
+    border: 1px solid rgba(32,33,36,0.06);
+    padding: 11px 10px;
+    text-align: center;
+  }
+
+  .copa-stat strong {
+    display: block;
+    font-size: 16px;
+    color: var(--berry);
+  }
+
+  .copa-stat span {
+    display: block;
+    font-size: 10px;
+    color: var(--white-55);
+    margin-top: 1px;
+  }
+
+  .frete-tabela-card {
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 16px;
+    background: #f8f8f8;
+    border: 1px solid rgba(32,33,36,0.08);
+  }
+
+  .frete-tabela-titulo {
+    font-size: 11px;
+    font-weight: 800;
+    color: #171717;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .frete-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 7px;
+    max-height: 230px;
+    overflow: auto;
+    padding-right: 3px;
+  }
+
+  .frete-chip {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid rgba(32,33,36,0.07);
+    font-size: 12px;
+  }
+
+  .frete-chip span:first-child { color: var(--white-80); font-weight: 600; }
+  .frete-chip span:last-child  { color: var(--ifood); font-weight: 900; white-space: nowrap; }
+
+  .cart-icon {
+    background: rgba(234,29,44,0.08) !important;
+    border-color: rgba(234,29,44,0.14) !important;
+  }
+
+  .pag-btn.selecionado, .entrega-btn.selecionado {
+    border-color: rgba(234,29,44,0.28) !important;
+    background: rgba(234,29,44,0.08) !important;
+    color: var(--ifood) !important;
+  }
+
+  .ponto-card {
+    background: #fbfbfb !important;
+    border-color: rgba(32,33,36,0.08) !important;
+  }
+
+  @media (min-width: 760px) {
+    .copa-content { grid-template-columns: 1.3fr .7fr; padding: 22px; }
+    .copa-stats { align-self: stretch; }
+    .frete-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
   /* ── MODAL DE DETALHE DO SABOR ── */
   .modal-sabor {
     position: fixed;
@@ -594,7 +763,7 @@
     align-items: center;
     justify-content: center;
     padding: 18px;
-    background: rgba(5, 0, 10, 0.78);
+    background: rgba(255, 255, 255, 0.72);
     backdrop-filter: blur(10px);
   }
 
@@ -608,7 +777,7 @@
     border: 1px solid var(--white-12);
     background:
       radial-gradient(ellipse at 50% 0%, rgba(232,164,74,0.10) 0%, transparent 55%),
-      linear-gradient(180deg, rgba(30,5,53,0.98), rgba(11,1,21,0.98));
+      linear-gradient(180deg, #ffffff, #fbfbfb);
     box-shadow: 0 24px 90px rgba(0,0,0,0.55);
     position: relative;
   }
@@ -642,7 +811,7 @@
   .modal-img-wrap {
     border-radius: var(--radius-lg);
     overflow: hidden;
-    background: rgba(155,58,138,0.10);
+    background: #fafafa;
     border: 1px solid var(--white-12);
   }
 
@@ -727,8 +896,8 @@
     gap: 12px;
     padding: 8px 10px;
     border-radius: var(--radius-md);
-    border: 1px solid var(--white-12);
-    background: var(--white-04);
+    border: 1px solid rgba(32,33,36,0.10);
+    background: #ffffff;
   }
 
   .modal-add {
@@ -790,18 +959,19 @@
     border-radius: var(--radius-md); border: none;
     font-family: 'Poppins', sans-serif;
     font-size: 15px; font-weight: 700; letter-spacing: 0.3px;
-    background: linear-gradient(135deg, #25d366 0%, #128c3e 100%);
+    background: linear-gradient(135deg, var(--ifood) 0%, var(--ifood-dark) 100%);
     color: #ffffff; cursor: pointer;
     transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 6px 30px rgba(37,211,102,0.30);
+    box-shadow: 0 10px 28px rgba(234,29,44,0.24);
     display: flex; align-items: center; justify-content: center; gap: 9px;
   }
 
-  .whatsapp:hover { opacity: 0.90; transform: translateY(-2px); box-shadow: 0 10px 40px rgba(37,211,102,0.40); }
+  .whatsapp:hover { opacity: 0.94; transform: translateY(-2px); box-shadow: 0 14px 42px rgba(234,29,44,0.30); }
   .whatsapp:active { transform: scale(0.98); }
 
   footer {
     text-align: center;
+    background: #ffffff;
     padding: 22px 20px;
     font-size: 11px; font-weight: 300;
     color: var(--white-30); letter-spacing: 0.5px;
@@ -819,6 +989,22 @@
   <p class="brand-tagline">Sabor que vicia</p>
   <span class="badge-tamanho">Copo 300ml · Gelado &amp; Cremoso</span>
 </header>
+
+<section class="copa-panel" aria-label="Painel promocional Copa Brasil">
+  <div class="copa-strip"></div>
+  <div class="copa-content">
+    <div>
+      <span class="copa-tag">🏆 Clima de Copa Brasil</span>
+      <h2 class="copa-title">Seu açaí gelado para torcer do jeito certo</h2>
+      <p class="copa-subtitle">Cardápio em formato de painel profissional, com pedido rápido, frete por bairro e finalização direta no WhatsApp.</p>
+    </div>
+    <div class="copa-stats">
+      <div class="copa-stat"><strong>300ml</strong><span>garrafa</span></div>
+      <div class="copa-stat"><strong>20min</strong><span>média entrega</span></div>
+      <div class="copa-stat"><strong>BA</strong><span>Camaçari</span></div>
+    </div>
+  </div>
+</section>
 
 <div class="section-header">
   <p class="section-eyebrow">Cardápio</p>
@@ -910,41 +1096,39 @@
         <label class="form-label" for="bairro">Bairro</label>
         <select id="bairro">
           <option value="">Selecione seu bairro…</option>
-          <option value="5">Centro</option>
-          <option value="6.50">Alto da Cruz</option>
-          <option value="5">Bela Vista</option>
-          <option value="3.50">Burissatuba</option>
-          <option value="5">Camaçari de Dentro</option>
-          <option value="6">Cristo Redentor</option>
-          <option value="5">Dois de Julho</option>
-          <option value="7">Ficam</option>
-          <option value="6.50">Gravatá</option>
-          <option value="4.50">Inocoop</option>
-          <option value="5">Jardim Brasília</option>
-          <option value="8">Jardim Limoeiro</option>
-          <option value="5">Lama Preta</option>
-          <option value="6.50">Mangueiral</option>
-          <option value="6">Nova Vitória</option>
-          <option value="6.50">Parque Satélite</option>
-          <option value="3.50">Parque Verde 2</option>
-          <option value="4.50">Parque Verde 3</option>
-          <option value="5">Piaçaveira</option>
-          <option value="5">Ponto Certo</option>
-          <option value="4.50">Bairro 46</option>
-          <option value="3">Recanto das Árvores</option>
-          <option value="4">PHOC 1</option>
-          <option value="4">PHOC 2</option>
-          <option value="4">PHOC 3</option>
-          <option value="3">Tancredo Neves</option>
-          <option value="5">Triângulo</option>
-          <option value="5">Verdes Horizontes</option>
-          <option value="5">Sítio Verde</option>
-          <option value="6">Gleba A</option>
-          <option value="6">Gleba B</option>
-          <option value="4">Gleba C</option>
-          <option value="3">Gleba E</option>
-          <option value="5">Gleba H</option>
-          <option value="9.50">Parque Nascente do Rio Capivara</option>
+          <option value="8">Centro</option>
+          <option value="10">Alto da Cruz</option>
+          <option value="8">Bela Vista</option>
+          <option value="6">Burissatuba</option>
+          <option value="6">Camaçari de Dentro</option>
+          <option value="8">Cristo Redentor</option>
+          <option value="8">Dois de Julho</option>
+          <option value="9">Ficam</option>
+          <option value="9">Gravatá</option>
+          <option value="7">Inocoop</option>
+          <option value="7">Jardim Brasília</option>
+          <option value="10">Jardim Limoeiro</option>
+          <option value="8">Lama Preta</option>
+          <option value="9">Mangueiral</option>
+          <option value="9">Nova Vitória</option>
+          <option value="9">Parque Satélite</option>
+          <option value="6">Parque Verde II</option>
+          <option value="6">Parque Verde III</option>
+          <option value="7">Piaçaveira</option>
+          <option value="8">Ponto Certo</option>
+          <option value="7">Bairro 46</option>
+          <option value="6">Recanto das Árvores</option>
+          <option value="6">PHOC 1, 2 e 3</option>
+          <option value="6">Tancredo Neves</option>
+          <option value="8">Triângulo</option>
+          <option value="7">Verdes Horizontes</option>
+          <option value="10">Sítio Verde</option>
+          <option value="8">Gleba A</option>
+          <option value="8">Gleba B</option>
+          <option value="7">Gleba C</option>
+          <option value="6">Gleba E</option>
+          <option value="8">Gleba H</option>
+          <option value="12">Parque Nascente do Rio Capivara</option>
           <option value="outro">Meu bairro não está na lista</option>
         </select>
 
@@ -955,6 +1139,45 @@
         </div>
 
         <p class="hint-text">Entrega em até 20 minutos após confirmação</p>
+
+        <div class="frete-tabela-card">
+          <div class="frete-tabela-titulo">🛵 Tabela de entrega por bairro</div>
+          <div class="frete-grid">
+            <div class="frete-chip"><span>Centro</span><span>R$ 8,00</span></div>
+            <div class="frete-chip"><span>Alto da Cruz</span><span>R$ 10,00</span></div>
+            <div class="frete-chip"><span>Bela Vista</span><span>R$ 8,00</span></div>
+            <div class="frete-chip"><span>Burissatuba</span><span>R$ 6,00</span></div>
+            <div class="frete-chip"><span>Camaçari de Dentro</span><span>R$ 6,00</span></div>
+            <div class="frete-chip"><span>Cristo Redentor</span><span>R$ 8,00</span></div>
+            <div class="frete-chip"><span>Dois de Julho</span><span>R$ 8,00</span></div>
+            <div class="frete-chip"><span>Ficam</span><span>R$ 9,00</span></div>
+            <div class="frete-chip"><span>Gravatá</span><span>R$ 9,00</span></div>
+            <div class="frete-chip"><span>Inocoop</span><span>R$ 7,00</span></div>
+            <div class="frete-chip"><span>Jardim Brasília</span><span>R$ 7,00</span></div>
+            <div class="frete-chip"><span>Jardim Limoeiro</span><span>R$ 10,00</span></div>
+            <div class="frete-chip"><span>Lama Preta</span><span>R$ 8,00</span></div>
+            <div class="frete-chip"><span>Mangueiral</span><span>R$ 9,00</span></div>
+            <div class="frete-chip"><span>Nova Vitória</span><span>R$ 9,00</span></div>
+            <div class="frete-chip"><span>Parque Satélite</span><span>R$ 9,00</span></div>
+            <div class="frete-chip"><span>Parque Verde II</span><span>R$ 6,00</span></div>
+            <div class="frete-chip"><span>Parque Verde III</span><span>R$ 6,00</span></div>
+            <div class="frete-chip"><span>Piaçaveira</span><span>R$ 7,00</span></div>
+            <div class="frete-chip"><span>Ponto Certo</span><span>R$ 8,00</span></div>
+            <div class="frete-chip"><span>Bairro 46</span><span>R$ 7,00</span></div>
+            <div class="frete-chip"><span>Recanto das Árvores</span><span>R$ 6,00</span></div>
+            <div class="frete-chip"><span>PHOC 1, 2 e 3</span><span>R$ 6,00</span></div>
+            <div class="frete-chip"><span>Tancredo Neves</span><span>R$ 6,00</span></div>
+            <div class="frete-chip"><span>Triângulo</span><span>R$ 8,00</span></div>
+            <div class="frete-chip"><span>Verdes Horizontes</span><span>R$ 7,00</span></div>
+            <div class="frete-chip"><span>Sítio Verde</span><span>R$ 10,00</span></div>
+            <div class="frete-chip"><span>Gleba A</span><span>R$ 8,00</span></div>
+            <div class="frete-chip"><span>Gleba B</span><span>R$ 8,00</span></div>
+            <div class="frete-chip"><span>Gleba C</span><span>R$ 7,00</span></div>
+            <div class="frete-chip"><span>Gleba E</span><span>R$ 6,00</span></div>
+            <div class="frete-chip"><span>Gleba H</span><span>R$ 8,00</span></div>
+            <div class="frete-chip"><span>Parque Nascente do Rio Capivara</span><span>R$ 12,00</span></div>
+          </div>
+        </div>
       </div>
     </div>
 
