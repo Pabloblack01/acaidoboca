@@ -248,6 +248,50 @@
   .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--white-12); }
   .divider span { font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--white-55); }
 
+  /* ── HORÁRIO DE FUNCIONAMENTO ── */
+  .horario-banner {
+    width: min(100% - 32px, 720px);
+    margin: 0 auto 14px;
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border: 1px solid;
+  }
+  .horario-banner.aberto {
+    background: #eef7e8;
+    border-color: #7bbf50;
+  }
+  .horario-banner.fechado {
+    background: #fce8e8;
+    border-color: #e05757;
+  }
+  .horario-banner-titulo {
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .horario-banner-titulo.aberto { color: #2d5a10; }
+  .horario-banner-titulo.fechado { color: #7a1c1c; }
+  .horario-dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: inline-block;
+  }
+  .horario-dot.verde { background: #3B6D11; }
+  .horario-dot.vermelho { background: #A32D2D; }
+  .horario-banner-sub {
+    font-size: 12px;
+    font-weight: 400;
+    padding-left: 18px;
+  }
+  .horario-banner-sub.aberto { color: #3B6D11; }
+  .horario-banner-sub.fechado { color: #A32D2D; }
+
   .cart {
     margin: 0 16px 32px;
     background: var(--card-bg);
@@ -383,7 +427,6 @@
     color: var(--gold-light);
   }
 
-  /* ── ENTREGA / RETIRADA TOGGLE ── */
   .entrega-section {
     display: flex;
     flex-direction: column;
@@ -431,7 +474,6 @@
     color: var(--white);
   }
 
-  /* ── PONTO DE RETIRADA CARD ── */
   .ponto-card {
     display: none;
     margin-top: 2px;
@@ -469,9 +511,7 @@
     object-fit: cover; border-radius: 50%;
   }
 
-  .ponto-logo-placeholder {
-    font-size: 22px;
-  }
+  .ponto-logo-placeholder { font-size: 22px; }
 
   .ponto-info {
     display: flex;
@@ -511,7 +551,6 @@
     margin-top: 1px;
   }
 
-  /* ── CAMPOS OCULTOS QUANDO RETIRADA ── */
   .campos-entrega {
     display: flex;
     flex-direction: column;
@@ -520,22 +559,11 @@
     transition: opacity 0.25s ease;
   }
 
-  .campos-entrega.oculto {
-    display: none;
-  }
+  .campos-entrega.oculto { display: none; }
 
-  /* ── LINHA DE FRETE OCULTA ── */
-  .frete-linha {
-    transition: opacity 0.25s;
-  }
+  .frete-linha { transition: opacity 0.25s; }
+  .frete-linha.oculto { display: none; }
 
-  .frete-linha.oculto {
-    display: none;
-  }
-
-
-
-  /* ── BAIRRO: SELECT + OUTRO BAIRRO ── */
   .bairro-extra {
     display: none;
     flex-direction: column;
@@ -544,9 +572,7 @@
     animation: fadeSlideIn 0.25s ease;
   }
 
-  .bairro-extra.visivel {
-    display: flex;
-  }
+  .bairro-extra.visivel { display: flex; }
 
   .frete-status {
     font-size: 11px;
@@ -556,16 +582,13 @@
     margin-top: 6px;
   }
 
-  /* ── OTIMIZAÇÃO DESKTOP / MOBILE ── */
   .grid, .cart {
     width: min(100% - 32px, 1120px);
     margin-left: auto;
     margin-right: auto;
   }
 
-  .cart {
-    max-width: 720px;
-  }
+  .cart { max-width: 720px; }
 
   @media (min-width: 640px) {
     header { padding: 54px 24px 38px; }
@@ -603,9 +626,6 @@
     .entrega-toggle { grid-template-columns: 1fr; }
   }
 
-
-
-  /* ── PAINEL PROFISSIONAL / ESTILO APP DELIVERY ── */
   .hero-panel {
     width: min(100% - 32px, 1120px);
     margin: 18px auto 0;
@@ -686,50 +706,6 @@
     margin-top: 1px;
   }
 
-  .frete-tabela-card {
-    margin-top: 10px;
-    padding: 12px;
-    border-radius: 16px;
-    background: #f8f8f8;
-    border: 1px solid rgba(32,33,36,0.08);
-  }
-
-  .frete-tabela-titulo {
-    font-size: 11px;
-    font-weight: 800;
-    color: #171717;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .frete-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 7px;
-    max-height: 230px;
-    overflow: auto;
-    padding-right: 3px;
-  }
-
-  .frete-chip {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    align-items: center;
-    padding: 8px 10px;
-    border-radius: 12px;
-    background: #ffffff;
-    border: 1px solid rgba(32,33,36,0.07);
-    font-size: 12px;
-  }
-
-  .frete-chip span:first-child { color: var(--white-80); font-weight: 600; }
-  .frete-chip span:last-child  { color: var(--ifood); font-weight: 900; white-space: nowrap; }
-
   .cart-icon {
     background: rgba(123,27,126,0.08) !important;
     border-color: rgba(123,27,126,0.14) !important;
@@ -749,10 +725,8 @@
   @media (min-width: 760px) {
     .hero-content { grid-template-columns: 1.3fr .7fr; padding: 22px; }
     .hero-stats { align-self: stretch; }
-    .frete-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
-  /* ── MODAL DE DETALHE DO SABOR ── */
   .modal-sabor {
     position: fixed;
     inset: 0;
@@ -951,7 +925,6 @@
     .modal-img-wrap img { max-height: 390px; }
   }
 
-  /* ── WHATSAPP BTN ── */
   .whatsapp {
     margin-top: 22px; width: 100%; padding: 17px;
     border-radius: var(--radius-md); border: none;
@@ -966,6 +939,7 @@
 
   .whatsapp:hover { opacity: 0.94; transform: translateY(-2px); box-shadow: 0 14px 42px rgba(123,27,126,0.28); }
   .whatsapp:active { transform: scale(0.98); }
+  .whatsapp:disabled { opacity: 0.42; cursor: not-allowed; transform: none; box-shadow: none; }
 
   footer {
     text-align: center;
@@ -1014,6 +988,15 @@
 
 <div class="divider"><span>Finalize seu Pedido</span></div>
 
+<!-- BANNER DE HORÁRIO -->
+<div class="horario-banner" id="horario-banner">
+  <div class="horario-banner-titulo" id="horario-titulo">
+    <span class="horario-dot" id="horario-dot"></span>
+    <span id="horario-titulo-texto"></span>
+  </div>
+  <div class="horario-banner-sub" id="horario-sub"></div>
+</div>
+
 <div class="cart">
 
   <div class="cart-header">
@@ -1053,7 +1036,6 @@
       <input id="telefone" type="tel" placeholder="(71) 00000-0000">
     </div>
 
-    <!-- ENTREGA OU RETIRADA -->
     <div class="entrega-section">
       <label class="entrega-label">Como quer receber?</label>
 
@@ -1068,10 +1050,8 @@
         </button>
       </div>
 
-      <!-- Card do ponto (aparece só quando retirada selecionada) -->
       <div class="ponto-card" id="ponto-card">
         <div class="ponto-logo-wrap">
-          <!-- Troque o src pela imagem da logo do ponto de retirada -->
           <img src="retirada.png" alt="Logo ponto de retirada"
                onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'ponto-logo-placeholder\'>🍇</span>'">
         </div>
@@ -1083,7 +1063,6 @@
       </div>
     </div>
 
-    <!-- Campos só de entrega (endereço e bairro) -->
     <div class="campos-entrega" id="campos-entrega">
       <div class="form-group">
         <label class="form-label" for="endereco">Endereço completo</label>
@@ -1160,7 +1139,7 @@
 
   </div>
 
-  <button class="whatsapp" onclick="enviar()">
+  <button class="whatsapp" id="btn-whatsapp" onclick="enviar()">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.413A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2Zm5.11 13.73c-.222.625-1.308 1.194-1.79 1.24-.482.046-.936.214-3.147-.656-2.662-1.05-4.36-3.74-4.49-3.914-.131-.173-1.065-1.415-1.065-2.698 0-1.283.672-1.914.91-2.175.238-.26.52-.325.693-.325.174 0 .347.002.499.01.16.008.375-.06.587.448.217.52.737 1.8.802 1.93.064.13.108.28.02.452-.087.172-.13.28-.259.432-.13.152-.273.34-.39.457-.13.13-.264.27-.113.53.15.26.667 1.1 1.43 1.78.981.87 1.81 1.14 2.07 1.27.259.13.41.108.56-.065.15-.173.644-.75.815-1.01.17-.26.34-.217.572-.13.232.087 1.472.695 1.724.822.252.128.42.19.482.3.06.107.06.62-.162 1.245Z" fill="white"/>
     </svg>
@@ -1168,7 +1147,6 @@
   </button>
 
 </div>
-
 
 <!-- Modal de detalhes do sabor -->
 <div class="modal-sabor" id="modal-sabor" aria-hidden="true">
@@ -1254,6 +1232,70 @@ let produtoModalIndex = null;
 let qtdModal = 1;
 let pagamentoSelecionado = "";
 let isRetirada = false;
+
+/* ── HORÁRIO DE FUNCIONAMENTO ── */
+// Dias da semana: 0=Domingo, 1=Segunda, 2=Terça, 3=Quarta, 4=Quinta, 5=Sexta, 6=Sábado
+// Segunda-feira (1) não está listada = fechado
+const HORARIOS_LOJA = {
+  0: { abre: 10, fecha: 17 }, // Domingo
+  2: { abre: 12, fecha: 19 }, // Terça
+  3: { abre: 12, fecha: 19 }, // Quarta
+  4: { abre: 12, fecha: 19 }, // Quinta
+  5: { abre: 12, fecha: 19 }, // Sexta
+  6: { abre: 12, fecha: 19 }, // Sábado
+};
+
+const DIAS_PT_LOJA = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
+
+function lojaAberta() {
+  const now = new Date();
+  const dia = now.getDay();
+  const hora = now.getHours() + now.getMinutes() / 60;
+  const h = HORARIOS_LOJA[dia];
+  return h && hora >= h.abre && hora < h.fecha;
+}
+
+function proximoHorarioLoja() {
+  const now = new Date();
+  const dia = now.getDay();
+  for (let i = 1; i <= 7; i++) {
+    const d = (dia + i) % 7;
+    if (HORARIOS_LOJA[d]) {
+      const label = i === 1 ? 'amanhã' : 'em ' + DIAS_PT_LOJA[d];
+      return 'Abrimos ' + label + ' às ' + HORARIOS_LOJA[d].abre + 'h00';
+    }
+  }
+  return 'Em breve!';
+}
+
+function atualizarBannerHorario() {
+  const banner   = document.getElementById('horario-banner');
+  const dot      = document.getElementById('horario-dot');
+  const tituloEl = document.getElementById('horario-titulo');
+  const textoEl  = document.getElementById('horario-titulo-texto');
+  const subEl    = document.getElementById('horario-sub');
+  const btnWpp   = document.getElementById('btn-whatsapp');
+
+  if (lojaAberta()) {
+    const now = new Date();
+    const h = HORARIOS_LOJA[now.getDay()];
+    banner.className = 'horario-banner aberto';
+    dot.className = 'horario-dot verde';
+    tituloEl.className = 'horario-banner-titulo';
+    textoEl.textContent = 'Estamos abertos — Faça seu pedido!';
+    subEl.className = 'horario-banner-sub aberto';
+    subEl.textContent = 'Aceitamos pedidos até as ' + h.fecha + 'h00';
+    btnWpp.disabled = false;
+  } else {
+    banner.className = 'horario-banner fechado';
+    dot.className = 'horario-dot vermelho';
+    tituloEl.className = 'horario-banner-titulo';
+    textoEl.textContent = 'Estamos fechados no momento';
+    subEl.className = 'horario-banner-sub fechado';
+    subEl.textContent = proximoHorarioLoja();
+    btnWpp.disabled = true;
+  }
+}
 
 /* ── MODO ENTREGA / RETIRADA ── */
 function modoEntrega() {
@@ -1457,9 +1499,7 @@ function atualizar() {
 
     const freteStatus = document.getElementById("frete-status");
     if (freteStatus) {
-      freteStatus.textContent = bairro && !bairro.conhecido
-        ? "O frete será confirmado pelo WhatsApp."
-        : "O frete será confirmado pelo WhatsApp.";
+      freteStatus.textContent = "O frete será confirmado pelo WhatsApp.";
     }
   }
 
@@ -1475,6 +1515,11 @@ document.getElementById("bairro-outro").addEventListener("input", atualizar);
 
 /* ── ENVIAR ── */
 function enviar() {
+  if (!lojaAberta()) {
+    alert("⚠️ Estamos fechados no momento.\n" + proximoHorarioLoja() + ".\n\nHorários:\nTerça a Sábado: 12h às 19h\nDomingo: 10h às 17h\nSegunda: Fechado");
+    return;
+  }
+
   const nome     = document.getElementById("nome").value.trim();
   const telefone = document.getElementById("telefone").value.trim();
 
@@ -1539,6 +1584,8 @@ function enviar() {
 
 renderProdutos();
 atualizar();
+atualizarBannerHorario();
+setInterval(atualizarBannerHorario, 60000);
 </script>
 </body>
 </html>
