@@ -9,17 +9,20 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg-deep:       #f7f7f7;
-    --bg-dark:       #ffffff;
-    --bg-mid:        #f3f4f6;
+    --bg-deep:       #1a0a2e;
+    --bg-dark:       #170826;
+    --bg-mid:        #2d1150;
+    --void-1:        #170826;
+    --void-2:        #3a1361;
+    --void-3:        #1a0a2e;
     --berry:         #7b1b7e;
     --berry-light:   #a02c98;
     --berry-glow:    rgba(123, 27, 126, 0.10);
     --berry-border:  rgba(123, 27, 126, 0.18);
-    --gold:          #7b1b7e;
-    --gold-light:    #8f2a92;
-    --gold-glow:     rgba(123, 27, 126, 0.10);
-    --gold-border:   rgba(123, 27, 126, 0.22);
+    --gold:          #e0498f;
+    --gold-light:    #ff9dc7;
+    --gold-glow:     rgba(224, 73, 143, 0.14);
+    --gold-border:   rgba(224, 73, 143, 0.34);
     --ifood:         #7b1b7e;
     --ifood-dark:    #5c1050;
     --cream:         #2d1235;
@@ -32,8 +35,14 @@
     --white-04:      #ffffff;
     --card-bg:       #ffffff;
     --card-hover:    #fff8fb;
-    --shadow-soft:   0 10px 35px rgba(20,20,20,0.08);
-    --shadow-card:   0 8px 24px rgba(20,20,20,0.07);
+    --ink:           #f6efff;
+    --ink-85:        rgba(246,239,255,0.88);
+    --ink-60:        rgba(246,239,255,0.62);
+    --ink-38:        rgba(246,239,255,0.40);
+    --ink-18:        rgba(246,239,255,0.18);
+    --ink-10:        rgba(246,239,255,0.10);
+    --shadow-soft:   0 10px 35px rgba(10,0,20,0.35);
+    --shadow-card:   0 8px 24px rgba(10,0,20,0.28);
     --radius-sm:     10px;
     --radius-md:     16px;
     --radius-lg:     22px;
@@ -42,26 +51,44 @@
 
   html { scroll-behavior: smooth; }
 
+  #particles-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+  }
+
   body {
     font-family: 'Nunito Sans', Arial, sans-serif;
     background-color: var(--bg-deep);
     background-image:
-      radial-gradient(circle at 8% 6%, rgba(123,27,126,0.08) 0 90px, transparent 95px),
-      radial-gradient(circle at 92% 4%, rgba(123,27,126,0.06) 0 110px, transparent 116px),
-      linear-gradient(180deg, #ffffff 0%, #faf7fb 42%, #f5f2f7 100%);
-    color: var(--white);
+      radial-gradient(ellipse 900px 600px at 12% 0%, rgba(160,44,152,0.35), transparent 60%),
+      radial-gradient(ellipse 800px 700px at 90% 15%, rgba(224,73,143,0.14), transparent 55%),
+      radial-gradient(ellipse 1000px 900px at 50% 100%, rgba(90,20,120,0.45), transparent 65%),
+      linear-gradient(160deg, var(--void-1) 0%, var(--void-2) 48%, var(--void-3) 100%);
+    background-attachment: fixed;
+    color: var(--ink);
     min-height: 100vh;
     overflow-x: hidden;
+    position: relative;
+  }
+
+  body > *:not(#particles-canvas) {
+    position: relative;
+    z-index: 1;
   }
 
   header {
     text-align: center;
     padding: 32px 20px 24px;
-    border-bottom: 1px solid rgba(32,33,36,0.08);
+    border-bottom: 1px solid var(--ink-18);
     background:
-      linear-gradient(135deg, rgba(123,27,126,0.08), transparent 36%),
-      linear-gradient(225deg, rgba(123,27,126,0.05), transparent 36%),
-      #ffffff;
+      linear-gradient(135deg, rgba(224,73,143,0.08), transparent 40%),
+      linear-gradient(225deg, rgba(160,44,152,0.18), transparent 40%),
+      rgba(255,255,255,0.03);
+    backdrop-filter: blur(8px);
     position: relative;
   }
 
@@ -69,8 +96,8 @@
     content: '';
     position: absolute;
     inset: 0 0 auto 0;
-    height: 7px;
-    background: linear-gradient(90deg, #5c1050, #7b1b7e, #a02c98);
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--berry-light), var(--gold));
   }
 
   .logo-wrap {
@@ -98,7 +125,7 @@
     font-weight: 800;
     letter-spacing: -0.8px;
     line-height: 1;
-    background: linear-gradient(100deg, #5c1050 10%, #8f2a92 70%);
+    background: linear-gradient(100deg, var(--gold-light) 5%, #ffffff 45%, var(--gold-light) 90%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -109,7 +136,7 @@
     font-weight: 300;
     letter-spacing: 3.5px;
     text-transform: uppercase;
-    color: var(--white-55);
+    color: var(--ink-60);
     margin-top: 5px;
   }
 
@@ -136,20 +163,20 @@
     font-weight: 600;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--gold-light);
     margin-bottom: 6px;
   }
 
   .section-title {
     font-size: 22px;
     font-weight: 700;
-    color: var(--white);
+    color: var(--ink);
   }
 
   .section-subtitle {
     font-size: 12px;
     font-weight: 300;
-    color: var(--white-55);
+    color: var(--ink-60);
     margin-top: 4px;
   }
 
@@ -159,6 +186,71 @@
     gap: 12px;
     padding: 14px 16px;
   }
+
+  .abas-menu {
+    width: min(100% - 32px, 1120px);
+    margin: 18px auto 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .aba-btn {
+    padding: 13px 10px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(32,33,36,0.10);
+    background: #ffffff;
+    color: var(--white-55);
+    font-family: 'Nunito Sans', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.22s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+  }
+
+  .aba-btn:hover {
+    border-color: var(--berry-border);
+    background: var(--berry-glow);
+  }
+
+  .aba-btn.ativa {
+    border-color: var(--berry-light);
+    background: linear-gradient(135deg, #6d1670, #a02c98);
+    color: #ffffff;
+    box-shadow: 0 8px 22px rgba(123,27,126,0.22);
+  }
+
+  .combo-banner {
+    display: none;
+    width: min(100% - 32px, 1120px);
+    margin: 14px auto 0;
+    border-radius: var(--radius-lg);
+    padding: 16px 18px;
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--gold-border);
+    align-items: center;
+    gap: 12px;
+  }
+
+  .combo-banner.visivel { display: flex; }
+
+  .combo-icon { font-size: 26px; flex-shrink: 0; }
+
+  .combo-titulo { font-size: 14px; font-weight: 800; color: var(--gold-light); }
+  .combo-desc { font-size: 12px; color: var(--ink-60); margin-top: 2px; line-height: 1.5; }
+
+  .desconto-linha {
+    display: none;
+    color: #2d7a1f !important;
+    font-weight: 700 !important;
+  }
+  .desconto-linha.visivel { display: flex; }
 
   .card {
     background: var(--card-bg);
@@ -196,6 +288,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+  }
+
+  .card-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #6d1670, #a02c98);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    white-space: nowrap;
   }
 
   .card-img img {
@@ -246,7 +355,7 @@
     padding: 0 20px; margin: 10px 0 4px;
   }
   .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--white-12); }
-  .divider span { font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--white-55); }
+  .divider span { font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--ink-60); }
 
   /* ── HORÁRIO DE FUNCIONAMENTO ── */
   .horario-banner {
@@ -474,20 +583,38 @@
     color: var(--white);
   }
 
-  .ponto-card {
+  .pontos-lista {
     display: none;
+    flex-direction: column;
+    gap: 10px;
     margin-top: 2px;
+  }
+
+  .pontos-lista.visivel {
+    display: flex;
+  }
+
+  .ponto-card {
     border-radius: var(--radius-md);
-    border: 1px solid var(--berry-border);
-    background: rgba(155,58,138,0.12);
+    border: 1px solid rgba(32,33,36,0.10);
+    background: #fbfbfb;
     padding: 14px 14px 16px;
+    display: flex;
     gap: 12px;
     align-items: flex-start;
     animation: fadeSlideIn 0.3s ease;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
   }
 
-  .ponto-card.visivel {
-    display: flex;
+  .ponto-card:hover {
+    border-color: var(--berry-border);
+    background: var(--berry-glow);
+  }
+
+  .ponto-card.ativo {
+    border-color: var(--berry-light);
+    background: rgba(155,58,138,0.12);
   }
 
   @keyframes fadeSlideIn {
@@ -630,8 +757,9 @@
     width: min(100% - 32px, 1120px);
     margin: 18px auto 0;
     border-radius: 24px;
-    border: 1px solid rgba(32,33,36,0.08);
-    background: #ffffff;
+    border: 1px solid var(--ink-18);
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(14px);
     box-shadow: var(--shadow-soft);
     overflow: hidden;
   }
@@ -656,8 +784,9 @@
     width: fit-content;
     padding: 6px 12px;
     border-radius: 999px;
-    background: rgba(123,27,126,0.08);
-    color: var(--ifood);
+    background: rgba(224,73,143,0.16);
+    border: 1px solid var(--gold-border);
+    color: var(--gold-light);
     font-size: 11px;
     font-weight: 800;
     letter-spacing: .5px;
@@ -668,12 +797,12 @@
     font-size: 22px;
     font-weight: 900;
     letter-spacing: -0.6px;
-    color: #171717;
+    color: var(--ink);
     line-height: 1.1;
   }
 
   .hero-subtitle {
-    color: var(--white-55);
+    color: var(--ink-60);
     font-size: 13px;
     line-height: 1.5;
     max-width: 640px;
@@ -687,8 +816,8 @@
 
   .hero-stat {
     border-radius: 16px;
-    background: #f8f8f8;
-    border: 1px solid rgba(32,33,36,0.06);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--ink-18);
     padding: 11px 10px;
     text-align: center;
   }
@@ -696,13 +825,13 @@
   .hero-stat strong {
     display: block;
     font-size: 16px;
-    color: var(--berry);
+    color: var(--gold-light);
   }
 
   .hero-stat span {
     display: block;
     font-size: 10px;
-    color: var(--white-55);
+    color: var(--ink-60);
     margin-top: 1px;
   }
 
@@ -717,9 +846,9 @@
     color: var(--ifood) !important;
   }
 
-  .ponto-card {
-    background: #fbfbfb !important;
-    border-color: rgba(32,33,36,0.08) !important;
+  .ponto-card.ativo {
+    border-color: rgba(123,27,126,0.28) !important;
+    background: rgba(123,27,126,0.08) !important;
   }
 
   @media (min-width: 760px) {
@@ -943,15 +1072,16 @@
 
   footer {
     text-align: center;
-    background: #ffffff;
+    background: transparent;
     padding: 22px 20px;
     font-size: 11px; font-weight: 300;
-    color: var(--white-30); letter-spacing: 0.5px;
-    border-top: 1px solid var(--white-12);
+    color: var(--ink-38); letter-spacing: 0.5px;
+    border-top: 1px solid var(--ink-18);
   }
 </style>
 </head>
 <body>
+<canvas id="particles-canvas"></canvas>
 
 <header>
   <div class="logo-wrap">
@@ -984,6 +1114,19 @@
   <p class="section-subtitle">Feito na hora com ingredientes frescos</p>
 </div>
 
+<div class="abas-menu">
+  <button class="aba-btn ativa" id="aba-sabores" onclick="mudarAba('sabores')">🍧 Sabores</button>
+  <button class="aba-btn" id="aba-combo" onclick="mudarAba('combo')">🎁 Combo 3x 10% OFF</button>
+</div>
+
+<div class="combo-banner" id="combo-banner">
+  <span class="combo-icon">🎁</span>
+  <div>
+    <div class="combo-titulo">Combo 3x com 10% de desconto</div>
+    <div class="combo-desc">Escolha 3 ou mais açaís de quaisquer sabores abaixo. O desconto de 10% é aplicado automaticamente no seu carrinho.</div>
+  </div>
+</div>
+
 <div class="grid" id="produtos"></div>
 
 <div class="divider"><span>Finalize seu Pedido</span></div>
@@ -1013,6 +1156,10 @@
     <div class="linha-valor">
       <span class="label">Subtotal</span>
       <span class="valor">R$ <span id="subtotal-val">0,00</span></span>
+    </div>
+    <div class="linha-valor desconto-linha" id="desconto-linha">
+      <span class="label">🎁 Desconto Combo 3+ (10%)</span>
+      <span class="valor" id="desconto-val">- R$ 0,00</span>
     </div>
     <div class="linha-valor frete-linha" id="frete-linha">
       <span class="label">Entrega</span>
@@ -1050,17 +1197,7 @@
         </button>
       </div>
 
-      <div class="ponto-card" id="ponto-card">
-        <div class="ponto-logo-wrap">
-          <img src="retirada.png" alt="Logo ponto de retirada"
-               onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'ponto-logo-placeholder\'>🍇</span>'">
-        </div>
-        <div class="ponto-info">
-          <span class="ponto-badge">Ponto de Retirada</span>
-          <span class="ponto-nome">Encantos Bolo</span>
-          <span class="ponto-endereco">Rua das Flores, Gleba E — Camaçari, BA · CEP 42808-161</span>
-        </div>
-      </div>
+      <div class="pontos-lista" id="pontos-lista"></div>
     </div>
 
     <div class="campos-entrega" id="campos-entrega">
@@ -1184,6 +1321,22 @@
 <script>
 const produtos = [
   {
+    name: "Nutella c/ Ninho",
+    preco: 16,
+    img: "ninho-nutella.png",
+    desc: "A versão mais recheada, com creme de ninho e detalhe de Nutella na garrafa.",
+    acompanha: ["Creme de ninho", "Açaí cremoso", "Creme de ninho", "Açaí", "Detalhe de Nutella"],
+    badge: "🔥 Mais Vendido"
+  },
+  {
+    name: "Ninho",
+    preco: 14,
+    img: "ninho.png",
+    desc: "Sabor mais suave e cremoso, com presença marcante do creme de ninho entre as camadas de açaí.",
+    acompanha: ["Creme de ninho", "Açaí cremoso", "Creme de ninho", "Mais uma camada de açaí"],
+    badge: "💜 Queridinho"
+  },
+  {
     name: "Fitness",
     preco: 15,
     img: "tradicional.png",
@@ -1191,40 +1344,39 @@ const produtos = [
     acompanha: ["Leite condensado", "Açaí cremoso", "Leite em pó", "Mais uma camada de açaí"]
   },
   {
-    name: "Ninho",
-    preco: 12,
-    img: "ninho.png",
-    desc: "Sabor mais suave e cremoso, com presença marcante do creme de ninho entre as camadas de açaí.",
-    acompanha: ["Creme de ninho", "Açaí cremoso", "Creme de ninho", "Mais uma camada de açaí"]
-  },
-  {
     name: "Ovomaltine",
-    preco: 12,
+    preco: 15,
     img: "ovomaltine.png",
     desc: "Combinação cremosa com toque crocante, ideal para quem gosta de um sabor mais intenso.",
     acompanha: ["Creme especial", "Açaí cremoso", "Ovomaltine", "Finalização cremosa"]
   },
   {
     name: "Maracujá",
-    preco: 12,
+    preco: 14,
     img: "maracujá.png",
     desc: "Mistura do açaí com o toque levemente azedinho do maracujá, criando um sabor mais refrescante.",
     acompanha: ["Creme de maracujá", "Açaí cremoso", "Camada de creme", "Finalização com açaí"]
   },
   {
     name: "Paçoca",
-    preco: 13,
+    preco: 14,
     img: "paçoca.png",
     desc: "Sabor mais doce e brasileiro, com paçoca combinando com o creme e o açaí gelado.",
     acompanha: ["Creme especial", "Açaí cremoso", "Paçoca", "Finalização cremosa"]
   },
+];
+
+const pontosRetirada = [
   {
-    name: "Nutella c/ Ninho",
-    preco: 15,
-    img: "ninho-nutella.png",
-    desc: "A versão mais recheada, com creme de ninho e detalhe de Nutella na garrafa.",
-    acompanha: ["Creme de ninho", "Açaí cremoso", "Creme de ninho", "Açaí", "Detalhe de Nutella"]
+    nome: "Encantos Bolo",
+    endereco: "Rua das Flores, Gleba E — Camaçari, BA · CEP 42808-161",
+    img: "retirada.png"
   },
+  {
+    nome: "Empório",
+    endereco: "R. Ramo Um do Canal, 321-277 - Gleba A, embaixo da academia MMfitness — Camaçari, BA",
+    img: "retirada2.png"
+  }
 ];
 
 let carrinho = {};
@@ -1232,6 +1384,7 @@ let produtoModalIndex = null;
 let qtdModal = 1;
 let pagamentoSelecionado = "";
 let isRetirada = false;
+let pontoSelecionado = 0;
 
 /* ── HORÁRIO DE FUNCIONAMENTO ── */
 // Dias da semana: 0=Domingo, 1=Segunda, 2=Terça, 3=Quarta, 4=Quinta, 5=Sexta, 6=Sábado
@@ -1281,7 +1434,7 @@ function atualizarBannerHorario() {
     const h = HORARIOS_LOJA[now.getDay()];
     banner.className = 'horario-banner aberto';
     dot.className = 'horario-dot verde';
-    tituloEl.className = 'horario-banner-titulo';
+    tituloEl.className = 'horario-banner-titulo aberto';
     textoEl.textContent = 'Estamos abertos — Faça seu pedido!';
     subEl.className = 'horario-banner-sub aberto';
     subEl.textContent = 'Aceitamos pedidos até as ' + h.fecha + 'h00';
@@ -1289,12 +1442,38 @@ function atualizarBannerHorario() {
   } else {
     banner.className = 'horario-banner fechado';
     dot.className = 'horario-dot vermelho';
-    tituloEl.className = 'horario-banner-titulo';
+    tituloEl.className = 'horario-banner-titulo fechado';
     textoEl.textContent = 'Estamos fechados no momento';
     subEl.className = 'horario-banner-sub fechado';
     subEl.textContent = proximoHorarioLoja();
     btnWpp.disabled = true;
   }
+}
+
+/* ── PONTOS DE RETIRADA ── */
+function renderPontosRetirada() {
+  const wrap = document.getElementById("pontos-lista");
+  let html = "";
+  pontosRetirada.forEach((p, i) => {
+    html += `
+    <div class="ponto-card${i === pontoSelecionado ? ' ativo' : ''}" onclick="selecionarPonto(${i})">
+      <div class="ponto-logo-wrap">
+        <img src="${p.img}" alt="Logo ${p.nome}"
+             onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\\'ponto-logo-placeholder\\'>🍇</span>'">
+      </div>
+      <div class="ponto-info">
+        <span class="ponto-badge">Ponto de Retirada</span>
+        <span class="ponto-nome">${p.nome}</span>
+        <span class="ponto-endereco">${p.endereco}</span>
+      </div>
+    </div>`;
+  });
+  wrap.innerHTML = html;
+}
+
+function selecionarPonto(i) {
+  pontoSelecionado = i;
+  renderPontosRetirada();
 }
 
 /* ── MODO ENTREGA / RETIRADA ── */
@@ -1303,7 +1482,7 @@ function modoEntrega() {
   document.getElementById("btn-entrega").classList.add("selecionado");
   document.getElementById("btn-retirada").classList.remove("selecionado");
   document.getElementById("campos-entrega").classList.remove("oculto");
-  document.getElementById("ponto-card").classList.remove("visivel");
+  document.getElementById("pontos-lista").classList.remove("visivel");
   document.getElementById("frete-linha").classList.remove("oculto");
   atualizar();
 }
@@ -1313,9 +1492,28 @@ function modoRetirada() {
   document.getElementById("btn-retirada").classList.add("selecionado");
   document.getElementById("btn-entrega").classList.remove("selecionado");
   document.getElementById("campos-entrega").classList.add("oculto");
-  document.getElementById("ponto-card").classList.add("visivel");
+  document.getElementById("pontos-lista").classList.add("visivel");
   document.getElementById("frete-linha").classList.add("oculto");
   atualizar();
+}
+
+/* ── ABAS ── */
+function mudarAba(aba) {
+  const btnSabores = document.getElementById("aba-sabores");
+  const btnCombo = document.getElementById("aba-combo");
+  const banner = document.getElementById("combo-banner");
+
+  if (aba === "combo") {
+    btnCombo.classList.add("ativa");
+    btnSabores.classList.remove("ativa");
+    banner.classList.add("visivel");
+  } else {
+    btnSabores.classList.add("ativa");
+    btnCombo.classList.remove("ativa");
+    banner.classList.remove("visivel");
+  }
+
+  document.getElementById("produtos").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 /* ── PRODUTOS ── */
@@ -1325,6 +1523,7 @@ function renderProdutos() {
     html += `
     <div class="card">
       <div class="card-img">
+        ${p.badge ? `<span class="card-badge">${p.badge}</span>` : ''}
         <img src="${p.img}" alt="${p.name}" loading="lazy">
       </div>
       <p class="card-name">${p.name}</p>
@@ -1488,9 +1687,21 @@ function atualizar() {
 
   lista.innerHTML = html || '<p class="vazio">Nenhum item adicionado ainda.</p>';
 
+  const totalItens = Object.values(carrinho).reduce((a, b) => a + b, 0);
+  const temCombo = totalItens >= 3;
+  const desconto = temCombo ? subtotal * 0.10 : 0;
+
+  const descontoLinha = document.getElementById("desconto-linha");
+  if (temCombo) {
+    descontoLinha.classList.add("visivel");
+    document.getElementById("desconto-val").textContent = "- R$ " + desconto.toFixed(2).replace('.', ',');
+  } else {
+    descontoLinha.classList.remove("visivel");
+  }
+
   const bairro = getBairroData();
   const frete  = bairro ? bairro.valor : 0;
-  const total  = subtotal + frete;
+  const total  = subtotal - desconto + frete;
 
   document.getElementById("subtotal-val").textContent = subtotal.toFixed(2).replace('.', ',');
 
@@ -1545,18 +1756,27 @@ function enviar() {
   }
 
   let pedidoLinhas = "";
+  let subtotal = 0;
   for (const item in carrinho) {
     const qtd   = carrinho[item];
     const preco = produtos.find(p => p.name === item).preco;
+    subtotal += preco * qtd;
     pedidoLinhas += `• ${item} x${qtd} — R$ ${(preco * qtd).toFixed(2).replace('.', ',')}\n`;
   }
+
+  const totalItens = Object.values(carrinho).reduce((a, b) => a + b, 0);
+  const temCombo = totalItens >= 3;
+  const descontoLinhaMsg = temCombo
+    ? `🎁 *Desconto Combo 3+ (10%):* - R$ ${(subtotal * 0.10).toFixed(2).replace('.', ',')}\n`
+    : "";
 
   const total = document.getElementById("total").textContent;
   const pagIcone = pagamentoSelecionado === "Pix" ? "📱" : pagamentoSelecionado === "Dinheiro" ? "💵" : "💳";
 
   let localInfo = "";
   if (isRetirada) {
-    localInfo = `🏪 *Retirada no ponto:* Rua das Flores, Gleba E — Camaçari, CEP 42808-161\n`;
+    const ponto = pontosRetirada[pontoSelecionado];
+    localInfo = `🏪 *Retirada no ponto:* ${ponto.nome} — ${ponto.endereco}\n`;
   } else {
     const endereco = document.getElementById("endereco").value.trim();
     const bairro   = getBairroData();
@@ -1575,6 +1795,7 @@ function enviar() {
     `📞 *Telefone:* ${telefone}\n` +
     localInfo + `\n` +
     `🛒 *Itens:*\n${pedidoLinhas}\n` +
+    descontoLinhaMsg +
     `${pagIcone} *Pagamento:* ${pagamentoSelecionado}\n` +
     `━━━━━━━━━━━━━━━━━━\n` +
     `💰 *Total: R$ ${total}*`;
@@ -1583,9 +1804,73 @@ function enviar() {
 }
 
 renderProdutos();
+renderPontosRetirada();
 atualizar();
 atualizarBannerHorario();
 setInterval(atualizarBannerHorario, 60000);
+
+/* ── PARTÍCULAS ANIMADAS ── */
+(function () {
+  const canvas = document.getElementById("particles-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let w, h, particles;
+
+  const CORES = [
+    "rgba(224,73,143,0.55)",
+    "rgba(160,44,152,0.55)",
+    "rgba(246,239,255,0.35)",
+    "rgba(123,27,126,0.45)"
+  ];
+
+  function tamanhoTela() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+
+  function criarParticulas() {
+    const qtd = Math.min(70, Math.floor((w * h) / 22000));
+    particles = Array.from({ length: qtd }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 2.6 + 0.8,
+      vy: Math.random() * 0.35 + 0.08,
+      vx: (Math.random() - 0.5) * 0.25,
+      cor: CORES[Math.floor(Math.random() * CORES.length)],
+      alphaBase: Math.random() * 0.5 + 0.3,
+      pulso: Math.random() * Math.PI * 2
+    }));
+  }
+
+  function animar() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+      p.pulso += 0.02;
+      const alpha = p.alphaBase * (0.6 + 0.4 * Math.sin(p.pulso));
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.cor.replace(/[\d.]+\)$/, alpha.toFixed(2) + ")");
+      ctx.fill();
+
+      p.y -= p.vy;
+      p.x += p.vx;
+
+      if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w; }
+      if (p.x < -10) p.x = w + 10;
+      if (p.x > w + 10) p.x = -10;
+    });
+    requestAnimationFrame(animar);
+  }
+
+  function iniciar() {
+    tamanhoTela();
+    criarParticulas();
+  }
+
+  window.addEventListener("resize", iniciar);
+  iniciar();
+  animar();
+})();
 </script>
 </body>
 </html>
