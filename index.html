@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Açaí do Boca — Sabor que vicia</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,500;6..12,600;6..12,700;6..12,800;6..12,900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300..900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
     --bg-deep:       #1a0a2e;
-    --bg-dark:       #170826;
-    --bg-mid:        #2d1150;
     --void-1:        #170826;
     --void-2:        #3a1361;
     --void-3:        #1a0a2e;
@@ -31,16 +31,12 @@
     --white-55:      rgba(32,33,36,0.62);
     --white-30:      rgba(32,33,36,0.38);
     --white-12:      rgba(32,33,36,0.12);
-    --white-07:      rgba(32,33,36,0.07);
-    --white-04:      #ffffff;
     --card-bg:       #ffffff;
     --card-hover:    #fff8fb;
     --ink:           #f6efff;
-    --ink-85:        rgba(246,239,255,0.88);
     --ink-60:        rgba(246,239,255,0.62);
     --ink-38:        rgba(246,239,255,0.40);
     --ink-18:        rgba(246,239,255,0.18);
-    --ink-10:        rgba(246,239,255,0.10);
     --shadow-soft:   0 10px 35px rgba(10,0,20,0.35);
     --shadow-card:   0 8px 24px rgba(10,0,20,0.28);
     --radius-sm:     10px;
@@ -75,7 +71,7 @@
     position: relative;
   }
 
-  body > *:not(#particles-canvas) {
+  body > *:not(#particles-canvas):not(#modal-sabor) {
     position: relative;
     z-index: 1;
   }
@@ -367,6 +363,9 @@
     flex-direction: column;
     gap: 5px;
     border: 1px solid;
+  }
+  .horario-banner.escondido {
+    display: none;
   }
   .horario-banner.aberto {
     background: #eef7e8;
@@ -1085,7 +1084,7 @@
 
 <header>
   <div class="logo-wrap">
-    <img src="logo.png" alt="Açaí do Boca logo">
+    <img src="logo.png" alt="Açaí do Boca logo" fetchpriority="high" decoding="async">
   </div>
   <h1 class="brand-name">Açaí do Boca</h1>
   <p class="brand-tagline">Sabor que vicia</p>
@@ -1324,7 +1323,7 @@ const produtos = [
     name: "Nutella c/ Ninho",
     preco: 16,
     img: "ninho-nutella.png",
-    desc: "A versão mais recheada, com creme de ninho e detalhe de Nutella na garrafa.",
+    desc: "Creme de Ninho + Nutella + Açaí cremoso. Uma combinação perfeita em camadas que transforma cada gole em uma experiência inesquecível.",
     acompanha: ["Creme de ninho", "Açaí cremoso", "Creme de ninho", "Açaí", "Detalhe de Nutella"],
     badge: "🔥 Mais Vendido"
   },
@@ -1332,7 +1331,7 @@ const produtos = [
     name: "Ninho",
     preco: 14,
     img: "ninho.png",
-    desc: "Sabor mais suave e cremoso, com presença marcante do creme de ninho entre as camadas de açaí.",
+    desc: "Creme de Ninho + Açaí cremoso. Uma combinação irresistível que une cremosidade e sabor em cada gole.",
     acompanha: ["Creme de ninho", "Açaí cremoso", "Creme de ninho", "Mais uma camada de açaí"],
     badge: "💜 Queridinho"
   },
@@ -1340,28 +1339,28 @@ const produtos = [
     name: "Fitness",
     preco: 15,
     img: "tradicional.png",
-    desc: "A opção clássica para quem gosta do açaí bem cremoso, com camadas equilibradas e sabor direto.",
+    desc: "Açaí Premium Zero, cremoso e irresistível. Porque cuidar da alimentação também pode ser delicioso.",
     acompanha: ["Leite condensado", "Açaí cremoso", "Leite em pó", "Mais uma camada de açaí"]
   },
   {
     name: "Ovomaltine",
     preco: 15,
     img: "ovomaltine.png",
-    desc: "Combinação cremosa com toque crocante, ideal para quem gosta de um sabor mais intenso.",
+    desc: "Creme de Ovomaltine + Açaí premium. Crocante, cremoso e simplesmente impossível de resistir.",
     acompanha: ["Creme especial", "Açaí cremoso", "Ovomaltine", "Finalização cremosa"]
   },
   {
     name: "Maracujá",
     preco: 14,
     img: "maracujá.png",
-    desc: "Mistura do açaí com o toque levemente azedinho do maracujá, criando um sabor mais refrescante.",
+    desc: "Creme de Maracujá + Açaí premium. Refrescância e cremosidade na medida certa para você se apaixonar.",
     acompanha: ["Creme de maracujá", "Açaí cremoso", "Camada de creme", "Finalização com açaí"]
   },
   {
     name: "Paçoca",
     preco: 14,
     img: "paçoca.png",
-    desc: "Sabor mais doce e brasileiro, com paçoca combinando com o creme e o açaí gelado.",
+    desc: "Creme de Paçoca + Amendoim crocante + Açaí cremoso. Uma união perfeita de sabores que conquista já no primeiro gole.",
     acompanha: ["Creme especial", "Açaí cremoso", "Paçoca", "Finalização cremosa"]
   },
 ];
@@ -1430,14 +1429,7 @@ function atualizarBannerHorario() {
   const btnWpp   = document.getElementById('btn-whatsapp');
 
   if (lojaAberta()) {
-    const now = new Date();
-    const h = HORARIOS_LOJA[now.getDay()];
-    banner.className = 'horario-banner aberto';
-    dot.className = 'horario-dot verde';
-    tituloEl.className = 'horario-banner-titulo aberto';
-    textoEl.textContent = 'Estamos abertos — Faça seu pedido!';
-    subEl.className = 'horario-banner-sub aberto';
-    subEl.textContent = 'Aceitamos pedidos até as ' + h.fecha + 'h00';
+    banner.className = 'horario-banner aberto escondido';
     btnWpp.disabled = false;
   } else {
     banner.className = 'horario-banner fechado';
@@ -1458,7 +1450,7 @@ function renderPontosRetirada() {
     html += `
     <div class="ponto-card${i === pontoSelecionado ? ' ativo' : ''}" onclick="selecionarPonto(${i})">
       <div class="ponto-logo-wrap">
-        <img src="${p.img}" alt="Logo ${p.nome}"
+        <img src="${p.img}" alt="Logo ${p.nome}" loading="lazy" decoding="async"
              onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\\'ponto-logo-placeholder\\'>🍇</span>'">
       </div>
       <div class="ponto-info">
@@ -1524,7 +1516,7 @@ function renderProdutos() {
     <div class="card">
       <div class="card-img">
         ${p.badge ? `<span class="card-badge">${p.badge}</span>` : ''}
-        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        <img src="${p.img}" alt="${p.name}" loading="lazy" decoding="async">
       </div>
       <p class="card-name">${p.name}</p>
       <p class="card-price">R$ ${p.preco.toFixed(2).replace('.', ',')}</p>
@@ -1813,15 +1805,13 @@ setInterval(atualizarBannerHorario, 60000);
 (function () {
   const canvas = document.getElementById("particles-canvas");
   if (!canvas) return;
-  const ctx = canvas.getContext("2d");
-  let w, h, particles;
+  const ctx = canvas.getContext("2d", { alpha: true });
+  let w, h, particles, rafId = null;
 
-  const CORES = [
-    "rgba(224,73,143,0.55)",
-    "rgba(160,44,152,0.55)",
-    "rgba(246,239,255,0.35)",
-    "rgba(123,27,126,0.45)"
-  ];
+  const CORES = ["224,73,143", "160,44,152", "246,239,255", "123,27,126"];
+  const FPS = 30;
+  const FRAME_MS = 1000 / FPS;
+  let ultimoFrame = 0;
 
   function tamanhoTela() {
     w = canvas.width = window.innerWidth;
@@ -1829,7 +1819,7 @@ setInterval(atualizarBannerHorario, 60000);
   }
 
   function criarParticulas() {
-    const qtd = Math.min(70, Math.floor((w * h) / 22000));
+    const qtd = Math.min(55, Math.floor((w * h) / 26000));
     particles = Array.from({ length: qtd }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
@@ -1842,14 +1832,15 @@ setInterval(atualizarBannerHorario, 60000);
     }));
   }
 
-  function animar() {
+  function desenhar() {
     ctx.clearRect(0, 0, w, h);
-    particles.forEach(p => {
-      p.pulso += 0.02;
-      const alpha = p.alphaBase * (0.6 + 0.4 * Math.sin(p.pulso));
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.pulso += 0.045;
+      ctx.globalAlpha = p.alphaBase * (0.6 + 0.4 * Math.sin(p.pulso));
+      ctx.fillStyle = "rgb(" + p.cor + ")";
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = p.cor.replace(/[\d.]+\)$/, alpha.toFixed(2) + ")");
       ctx.fill();
 
       p.y -= p.vy;
@@ -1858,8 +1849,15 @@ setInterval(atualizarBannerHorario, 60000);
       if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w; }
       if (p.x < -10) p.x = w + 10;
       if (p.x > w + 10) p.x = -10;
-    });
-    requestAnimationFrame(animar);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function animar(t) {
+    rafId = requestAnimationFrame(animar);
+    if (t - ultimoFrame < FRAME_MS) return;
+    ultimoFrame = t;
+    desenhar();
   }
 
   function iniciar() {
@@ -1867,9 +1865,23 @@ setInterval(atualizarBannerHorario, 60000);
     criarParticulas();
   }
 
-  window.addEventListener("resize", iniciar);
+  let resizeTimer = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(iniciar, 150);
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = null;
+    } else if (!rafId) {
+      animar(performance.now());
+    }
+  });
+
   iniciar();
-  animar();
+  animar(performance.now());
 })();
 </script>
 </body>
